@@ -3,8 +3,9 @@ import '../../styles/general.scss';
 import Header from '../../components/Header';
 import { Button } from 'react-bootstrap';
 import {HiPlus} from 'react-icons/hi';
-import EmptyState from '../../static/activity-empty-state.png';
+import EmptyState from '../../static/activity-empty-state.svg';
 import Card from '../../components/Card';
+import ContentLayout from '../../components/Content';
 
 const emptyState = () => {
   return (
@@ -39,14 +40,10 @@ const generateActivityCard = () => {
 
 export default function Home() {
   return (
-    <>
-      <Header title="to do list app" />
-      <div className="container py-4">
-        {generateTitleBar()}
-        {generateActivityCard()}
-        {/* {emptyState()} */}
-
-      </div>
-    </>
+    <ContentLayout>
+      {generateTitleBar()}
+      {generateActivityCard()}
+      {/* {emptyState()} */}
+    </ContentLayout>
   )
 }

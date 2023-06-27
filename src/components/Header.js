@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/header.scss';
 import {Link} from 'react-router-dom';
 
-export default function Navbar({title}) {
+export default function Header({title}) {
   return (
     <div 
         className="header"
