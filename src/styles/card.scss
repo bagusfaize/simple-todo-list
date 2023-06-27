@@ -1,0 +1,28 @@
+@import "colors";
+
+.activity-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  background: $color-white;
+  box-shadow: 2px 4px 9px 0px rgba(0, 0, 0, 0.175);
+  .title {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .date {
+      font-size: 0.9rem;
+    }
+    .delete {
+      font-size: 1.25rem;
+    }
+  }
+}

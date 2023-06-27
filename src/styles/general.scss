@@ -1,0 +1,30 @@
+@import "colors";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  background: $color-light-grey;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.btn {
+  font-size: 0.9rem;
+  border-radius: 50px;
+  background: $color-blue;
+  border: none;
+  svg {
+    margin-right: 0.3rem;
+  }
+}
+
+.btn:hover {
+  background: #1596d7;
+}

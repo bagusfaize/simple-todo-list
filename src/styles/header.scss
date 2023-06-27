@@ -1,0 +1,13 @@
+@import "colors";
+
+.header {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 1.5rem ;
+    background: $color-blue;
+    a {
+        color: $color-white;
+        text-decoration: none;
+      }
+  }
