@@ -13,18 +13,31 @@ body {
 .title {
   font-weight: 700;
   font-size: 1.5rem;
+  display: flex;
+  a {
+    display: inline-flex;
+  }
+  svg {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
 }
 
 .btn {
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
   font-size: 0.9rem;
   border-radius: 50px;
-  background: $color-blue;
   border: none;
   svg {
     margin-right: 0.3rem;
   }
 }
 
-.btn:hover {
+.btn-primary {
+  background: $color-blue;
+}
+
+.btn-primary:hover {
   background: #1596d7;
 }
