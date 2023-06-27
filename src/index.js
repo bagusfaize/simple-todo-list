@@ -7,6 +7,7 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import Home from './pages/Home/Home';
+import Details from './pages/Details/Details';
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/detail',
-    element: <div>detail</div>
+    element: <Details />
   }
 ])
 
