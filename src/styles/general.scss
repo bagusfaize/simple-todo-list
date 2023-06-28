@@ -41,3 +41,36 @@ body {
 .btn-primary:hover {
   background: #1596d7;
 }
+
+.cancel-btn {
+  color: $color-dark-grey;
+  background: $color-light-grey;
+}
+
+.delete-btn {
+  background: $color-red;
+}
+
+.delete-modal-body {
+  margin: 2rem 0;
+  text-align: center;
+  .footer{
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    button {
+      margin: 1rem;
+    }
+  }
+}
+
+.info-alert {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 0.95rem;
+  img {
+    margin-right: 0.5rem;
+  }
+}
