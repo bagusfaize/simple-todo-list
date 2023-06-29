@@ -63,7 +63,7 @@ export default function Home() {
               <Card
                 item={item}
                 key={item.title + i}
-                onDeleteClick={() => handleDeleteActivity(item)}
+                onDeleteClick={(e) => handleDeleteActivity(e,item)}
               />
             )
           })
@@ -72,7 +72,8 @@ export default function Home() {
     )
   }
 
-  const handleDeleteActivity = (item) => {
+  const handleDeleteActivity = (e,item) => {
+    e.stopPropagation && e.stopPropagation()
     setSelectedActivity(item)
     setShowDeleteModal(true)
   }
@@ -139,7 +140,7 @@ export default function Home() {
     <ContentLayout>
       {generateTitleBar()}
       {generateActivityCard()}
-      {!activityList.length && emptyState()}
+      {activityList.length === 0 && emptyState()}
       {generateDeleteConfirmation()}
       {generateAlert()}
     </ContentLayout>
