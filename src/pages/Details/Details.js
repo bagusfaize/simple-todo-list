@@ -47,7 +47,7 @@ export default function Details() {
   const emptyState = () => {
     return (
       <div className="d-flex justify-content-center py-5">
-        <img src={EmptyState} alt='empty-state' width={500} />
+        <img data-cy="todo-empty-state" src={EmptyState} alt='empty-state' width={500} />
       </div>
     )
   }
@@ -290,10 +290,12 @@ export default function Details() {
     )
   }
 
+  console.log('clg activityDetails', activityDetails);
+
   return (
     <ContentLayout>
       {generateTitleBar()}
-      { !activityDetails && activityDetails.todo_items && emptyState()}
+      { activityDetails && activityDetails.todo_items.length === 0 && emptyState()}
       {generateTodoList()}
       {generateModal()}
       {generateDeleteConfirmation()}
