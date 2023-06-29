@@ -82,8 +82,6 @@ export default function Details() {
     })
   }
 
-  console.log('clg selected', selectedItem);
-
   const handleUpdateItem = () => {
     const body = {
       is_active: selectedItem.is_active,
@@ -289,8 +287,6 @@ export default function Details() {
       </ModalComponent>
     )
   }
-
-  console.log('clg activityDetails', activityDetails);
 
   return (
     <ContentLayout>
