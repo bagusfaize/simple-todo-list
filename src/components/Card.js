@@ -4,14 +4,15 @@ import { FiTrash2 } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import moment from 'moment/moment';
 
-export default function Card({ title, date, onDeleteClick}) {
+export default function Card({ item, onDeleteClick}) {
+  const {title, date, id} = item;
   return (
     <div className="col-3">
       <div
         className="activity-card"
       // data-cy="header-background"
       >
-        <Link to={'/detail'}>
+        <Link to={`/details/${id}`}>
           <div className="title">{title}</div>
         </Link>
         <div className="footer">

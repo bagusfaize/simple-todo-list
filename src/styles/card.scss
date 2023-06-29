@@ -31,6 +31,10 @@ a {
     .delete {
       cursor: pointer;
       font-size: 1.25rem;
+      &:hover {
+        color: $color-red;
+        transition: color 0.25s ease-in-out;
+      }
     }
   }
 }
