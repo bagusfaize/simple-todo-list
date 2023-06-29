@@ -59,12 +59,10 @@ export default function Home() {
       <div className="row py-4">
         {
           activityList.map((item, i) => {
-            const { title, created_at } = item;
             return (
               <Card
-                title={title}
-                date={created_at}
-                key={title + created_at}
+                item={item}
+                key={item.title + i}
                 onDeleteClick={() => handleDeleteActivity(item)}
               />
             )
