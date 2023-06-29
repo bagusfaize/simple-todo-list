@@ -4,7 +4,7 @@ import Header from './Header'
 export default function ContentLayout({children}) {
   return (
     <>
-        <Header title="to do list app" />
+        <Header title="TO DO LIST APP" />
         <div className="container py-4">
             {children}
         </div>
