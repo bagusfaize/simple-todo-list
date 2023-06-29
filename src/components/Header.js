@@ -9,7 +9,7 @@ export default function Header({title}) {
         data-cy="header-background"
     >
         <div className='container'>
-          <Link to={'/'}>
+          <Link to={'/'} data-cy="header-title">
             {title}
           </Link>
         </div>

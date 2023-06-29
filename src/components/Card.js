@@ -10,16 +10,17 @@ export default function Card({ item, onDeleteClick}) {
     <div className="col-3">
       <div
         className="activity-card"
-      // data-cy="header-background"
+        data-cy="activity-item"
       >
         <Link to={`/details/${id}`}>
-          <div className="title">{title}</div>
+          <div className="title" data-cy="activity-item-title">{title}</div>
         </Link>
         <div className="footer">
-          <span className="date">{moment(date).format('DD MMMM YYYY')}</span>
+          <span className="date" data-cy="activity-item-date">{moment(date).format('DD MMMM YYYY')}</span>
           <span
             onClick={onDeleteClick}
             className="delete"
+            data-cy="activity-item-delete-button"
           >
             <FiTrash2 />
           </span>

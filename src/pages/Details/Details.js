@@ -115,18 +115,19 @@ export default function Details() {
       onSubmit={handleSubmitTodo}
       >
         <div className='add-modal'>
-          <Form.Label>NAMA LIST ITEM</Form.Label>
+          <Form.Label data-cy="modal-add-name-title">NAMA LIST ITEM</Form.Label>
           <Form.Control
+            data-cy="modal-add-name-input"
             type="text"
             value={itemName}
             placeholder="Tambahkan nama list item"
             onChange={(e) => setItemName(e.target.value)}
           />
-          <Form.Label className="mt-3">PRIORITY</Form.Label>
+          <Form.Label className="mt-3" data-cy="modal-add-priority-title">PRIORITY</Form.Label>
           <div className="col-4">
             <Select
               className="custom-select-option"
-              placeholder="Select Option"
+              placeholder="Pilih priority"
               value={selectedOption}
               options={priorityOptions}
               getOptionLabel={e => {
@@ -168,7 +169,7 @@ export default function Details() {
           className="title"
           data-cy="header-background"
         >
-          <Link to={'/'}>
+          <Link to={'/'} data-cy="todo-back-button">
             <HiChevronLeft />
           </Link>
             {
@@ -181,17 +182,17 @@ export default function Details() {
                   onChange={(e) => setTitleActivity(e.target.value)}
                   />
               :
-                <div>{titleActivity}</div>
+                <div data-cy="todo-title">{titleActivity}</div>
             }
-          <div className='edit-title-button' onClick={handleEditTitle}>
+          <div className='edit-title-button' onClick={handleEditTitle} data-cy="todo-title-edit-button">
             <img src={EditIcon} alt='edit-title-button'/>
           </div>
         </div>
         <div>
-          <span className='sort-button'>
+          <span className='sort-button' data-cy="todo-sort-button">
             <img src={SortIcon} alt='sort-icon' />
           </span>
-          <Button data-cy="activity-add-button" onClick={handleShowModal}><HiPlus />Tambah</Button>
+          <Button data-cy="todo-add-button" onClick={handleShowModal}><HiPlus />Tambah</Button>
         </div>
       </div>
     )

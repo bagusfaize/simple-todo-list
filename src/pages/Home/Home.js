@@ -80,7 +80,7 @@ export default function Home() {
   const generateTitleBar = () => {
     return (
       <div className="d-flex justify-content-between my-3">
-        <div className="title" data-cy="header-background">Activity</div>
+        <div className="title" data-cy="activity-title">Activity</div>
         <Button onClick={addActivity} data-cy="activity-add-button"><HiPlus />Tambah</Button>
       </div>
     )

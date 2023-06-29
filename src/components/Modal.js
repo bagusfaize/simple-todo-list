@@ -10,21 +10,19 @@ export default function ModalComponent(props) {
             show={show}
             onHide={onClose}
             onClose={onClose}
+            data-cy="modal-add"
         >
             {
                 header &&
                 <Modal.Header closeButton>
-                    <Modal.Title>{modalTitle}</Modal.Title>
-                    {/* <p className="btn-modal-close" onClick={onClose}>
-                        <i className="fa fa-times text-danger"></i>
-                    </p> */}
+                    <Modal.Title data-cy="modal-add-title">{modalTitle}</Modal.Title>
                 </Modal.Header>
             }
             <Modal.Body>{children}</Modal.Body>
             {
                 footer &&
                 <Modal.Footer>
-                  <Button data-cy="todo-add-button" onClick={isEdit ? onUpdate : onSubmit}>{isEdit ? "Simpan" : "Tambah"}</Button>
+                  <Button data-cy="modal-add-save-button" onClick={isEdit ? onUpdate : onSubmit}>{isEdit ? "Simpan" : "Tambah"}</Button>
                 </Modal.Footer>
             }
         </Modal>
