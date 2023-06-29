@@ -270,7 +270,11 @@ export default function Details() {
 
   const generateDeleteConfirmation = () => {
     return (
-      <ModalComponent show={showDeleteModal} onClose={handleCloseDeleteModal}>
+      <ModalComponent 
+        show={showDeleteModal} 
+        onClose={handleCloseDeleteModal}
+        modalCy="modal-delete"  
+      >
         <div className="delete-modal-body">
           <div>
             <img src={DeleteIcon} alt="delete-icon" />
