@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import '../styles/modal.scss';
 
 export default function ModalComponent(props) {
-    const { show, onClose, children, modalTitle, header, footer, onSubmit, onUpdate, isEdit, modalCy, btnCy } = props;
+    const { show, onClose, children, modalTitle, header, footer, onSubmit, onUpdate, isEdit, modalCy, btnCy, disableButton } = props;
     return (
         <Modal
             centered
@@ -22,7 +22,13 @@ export default function ModalComponent(props) {
             {
                 footer &&
                 <Modal.Footer>
-                  <Button data-cy={btnCy} onClick={isEdit ? onUpdate : onSubmit}>{isEdit ? "Simpan" : "Tambah"}</Button>
+                  <Button 
+                    data-cy={btnCy} 
+                    onClick={isEdit ? onUpdate : onSubmit}
+                    disabled={disableButton}
+                    >
+                        {isEdit ? "Simpan" : "Tambah"}
+                    </Button>
                 </Modal.Footer>
             }
         </Modal>
