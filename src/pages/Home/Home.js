@@ -89,7 +89,7 @@ export default function Home() {
   const emptyState = () => {
     return (
       <div className="d-flex justify-content-center py-5">
-        <img src={EmptyState} alt='empty-state' width={500} />
+        <img src={EmptyState} data-cy="activity-empty-state" alt='empty-state' width={500} />
       </div>
     )
   }
@@ -108,16 +108,16 @@ export default function Home() {
 
   const generateDeleteConfirmation = () => {
     return (
-      <ModalComponent show={showDeleteModal} onClose={handleCloseDeleteModal}>
-        <div className="delete-modal-body">
+      <ModalComponent show={showDeleteModal} onClose={handleCloseDeleteModal} modalCy="modal-delete">
+        <div className="delete-modal-body" >
           <div>
-            <img src={DeleteIcon} alt="delete-icon" />
+            <img data-cy="modal-delete-icon" src={DeleteIcon} alt="delete-icon" />
             <div>Apakah anda yakin menghapus activity</div>
             <div><b>{`"${selectedActivity.title || ''}"?`}</b></div>
           </div>
           <div className='footer'>
-            <Button onClick={handleCloseDeleteModal} className="cancel-btn" data-cy="cancel-delete-button" variant="light">Cancel</Button>
-            <Button onClick={deleteActivity} className="delete-btn" data-cy="activity-delete-button" variant="danger">Hapus</Button>
+            <Button onClick={handleCloseDeleteModal} className="cancel-btn" data-cy="modal-delete-cancel-button" variant="light">Cancel</Button>
+            <Button onClick={deleteActivity} className="delete-btn" data-cy="modal-delete-confirm-button" variant="danger">Hapus</Button>
           </div>
         </div>
       </ModalComponent>
@@ -126,7 +126,7 @@ export default function Home() {
 
   const generateAlert = () => {
     return (
-      <ModalComponent show={showAlert} onClose={()=> setShowAlert(false)}>
+      <ModalComponent show={showAlert} onClose={()=> setShowAlert(false)} modalCy="modal-information">
         <div className="info-alert">
           <span><img src={InfoIcon} alt="info-icon" /></span>
           <span>Activity berhasil dihapus</span>

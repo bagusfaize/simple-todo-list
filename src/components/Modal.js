@@ -3,14 +3,14 @@ import { Button, Modal } from 'react-bootstrap';
 import '../styles/modal.scss';
 
 export default function ModalComponent(props) {
-    const { show, onClose, children, modalTitle, header, footer, onSubmit, onUpdate, isEdit } = props;
+    const { show, onClose, children, modalTitle, header, footer, onSubmit, onUpdate, isEdit, modalCy, btnCy } = props;
     return (
         <Modal
             centered
             show={show}
             onHide={onClose}
             onClose={onClose}
-            data-cy="modal-add"
+            data-cy={modalCy}
         >
             {
                 header &&
@@ -22,7 +22,7 @@ export default function ModalComponent(props) {
             {
                 footer &&
                 <Modal.Footer>
-                  <Button data-cy="modal-add-save-button" onClick={isEdit ? onUpdate : onSubmit}>{isEdit ? "Simpan" : "Tambah"}</Button>
+                  <Button data-cy={btnCy} onClick={isEdit ? onUpdate : onSubmit}>{isEdit ? "Simpan" : "Tambah"}</Button>
                 </Modal.Footer>
             }
         </Modal>

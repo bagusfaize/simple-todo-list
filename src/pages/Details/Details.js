@@ -105,14 +105,16 @@ export default function Details() {
   const generateModal = () => {
     return (
       <ModalComponent 
-      show={showModal} 
-      modalTitle={isEditItem ? "Edit Item" : "Tambah List Item"}
-      onClose={handleClose}
-      header
-      footer
-      isEdit={isEditItem}
-      onUpdate={handleUpdateItem}
-      onSubmit={handleSubmitTodo}
+        modalCy="modal-add"
+        show={showModal} 
+        modalTitle={isEditItem ? "Edit Item" : "Tambah List Item"}
+        onClose={handleClose}
+        header
+        footer
+        isEdit={isEditItem}
+        onUpdate={handleUpdateItem}
+        onSubmit={handleSubmitTodo}
+        btnCy="modal-add-save-button"
       >
         <div className='add-modal'>
           <Form.Label data-cy="modal-add-name-title">NAMA LIST ITEM</Form.Label>
@@ -126,13 +128,14 @@ export default function Details() {
           <Form.Label className="mt-3" data-cy="modal-add-priority-title">PRIORITY</Form.Label>
           <div className="col-4">
             <Select
+              data-cy="modal-add-priority-dropdown"
               className="custom-select-option"
               placeholder="Pilih priority"
               value={selectedOption}
               options={priorityOptions}
               getOptionLabel={e => {
                 return(
-                <div>
+                <div data-cy={`modal-add-priority-${e.value}`}>
                   <span>{e.icon}</span>
                   <span>{e.label}</span>
                 </div>
