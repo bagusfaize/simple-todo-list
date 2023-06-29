@@ -16,5 +16,10 @@
         //     // background: red;
         // }
     }
+}
 
+.modal-footer {
+    button:disabled {
+        background: #16ABF8;
+    }
 }

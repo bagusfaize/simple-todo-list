@@ -112,6 +112,7 @@ export default function Details() {
         header
         footer
         isEdit={isEditItem}
+        disableButton={!itemName && !selectedOption}
         onUpdate={handleUpdateItem}
         onSubmit={handleSubmitTodo}
         btnCy="modal-add-save-button"
@@ -277,8 +278,8 @@ export default function Details() {
             <div><b>{`"${selectedItem.title || ''}"?`}</b></div>
           </div>
           <div className='footer'>
-            <Button onClick={handleCloseDeleteModal} className="cancel-btn" data-cy="cancel-delete-button" variant="light">Cancel</Button>
-            <Button onClick={deleteItem} className="delete-btn" data-cy="activity-delete-button" variant="danger">Hapus</Button>
+            <Button onClick={handleCloseDeleteModal} className="cancel-btn" data-cy="modal-delete-cancel-button" variant="light">Cancel</Button>
+            <Button onClick={deleteItem} className="delete-btn" data-cy="modal-delete-confirm-button" variant="danger">Hapus</Button>
           </div>
         </div>
       </ModalComponent>
