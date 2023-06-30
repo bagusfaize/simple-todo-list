@@ -182,7 +182,6 @@ export default function Details() {
             ref={titleRef}
             data-cy="todo-title"
             onBlur={handleOnBlur}
-            onMouseLeave={handleOnBlur}
             type="text"
             className={`editableTitle ${isEditTitle ? 'isEdit' : ''}`}
             value={titleActivity}
