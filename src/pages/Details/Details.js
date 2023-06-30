@@ -158,7 +158,6 @@ export default function Details() {
   }
 
   const handleEditTitle = () => {
-    titleRef && titleRef.current.focus()
     setIsEditTitle(true)
   }
 
@@ -183,9 +182,10 @@ export default function Details() {
           <Link to={'/'} data-cy="todo-back-button">
             <HiChevronLeft />
           </Link>
-          <Form.Control 
+          {
+            isEditTitle ?
+            <Form.Control 
             ref={titleRef}
-            data-cy="todo-title"
             onBlur={handleOnBlur}
             type="text"
             className={`editableTitle ${isEditTitle ? 'isEdit' : ''}`}
@@ -193,8 +193,7 @@ export default function Details() {
             onClick={handleEditTitle}
             onChange={(e) => setTitleActivity(e.target.value)}
           />
-          {
-            !isEditTitle &&
+            :
               <div
                 data-cy="todo-title"
                 onClick={handleEditTitle}
