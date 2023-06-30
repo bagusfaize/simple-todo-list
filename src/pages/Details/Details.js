@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import ContentLayout from '../../components/Content'
-import { Button, Form } from 'react-bootstrap';
-import { HiPlus, HiChevronLeft } from 'react-icons/hi';
+import { Button, Dropdown, Form } from 'react-bootstrap';
+import { HiPlus, HiChevronLeft, HiCheck } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import EmptyState from '../../static/todo-empty-state.svg';
 import EditIcon from '../../static/todo-title-edit-button.svg';
 import SortIcon from '../../static/tabler_arrows-sort.svg';
 import DeleteIcon from '../../static/modal-delete-icon.svg';
+import InfoIcon from '../../static/modal-information-icon.svg';
 import ModalComponent from '../../components/Modal';
 import axios from 'axios';
-import { BASE_URL, priorityOptions } from '../../utils/Constant';
+import { BASE_URL, priorityOptions, sortOptions } from '../../utils/Constant';
 import {useParams} from 'react-router-dom';
 import List from '../../components/List';
 import Select from 'react-select';
@@ -17,9 +18,7 @@ import Select from 'react-select';
 export default function Details() {
   const {id} = useParams()
   const [isEditTitle, setIsEditTitle] = useState(false)
-  const [activityDetails, setActivityDetails] = useState({
-    todo_items: []
-  });
+  const [todoItems, setTodoItems] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [titleActivity, setTitleActivity] = useState('');
   const [itemName, setItemName] = useState('');
@@ -27,7 +26,8 @@ export default function Details() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
   const [isEditItem, setisEditItem] = useState(false);
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [selectedSort, setSelectedSort] = useState('sort-latest')
 
   useEffect(() => {
     getActivityDetails()
@@ -38,7 +38,7 @@ export default function Details() {
     .then(res => {
       const { status, data } = res;
       if (status === 200) {
-        setActivityDetails(data);
+        setTodoItems(data.todo_items);
         setTitleActivity(data.title)
       }
     })
@@ -127,6 +127,7 @@ export default function Details() {
           <Form.Label className="mt-3" data-cy="modal-add-priority-title">PRIORITY</Form.Label>
           <div className="col-4">
             <Select
+              id='modal-add-priority-dropdown'
               data-cy="modal-add-priority-dropdown"
               className="custom-select-option"
               placeholder="Pilih priority"
@@ -191,20 +192,58 @@ export default function Details() {
           </div>
         </div>
         <div>
-          <span className='sort-button' data-cy="todo-sort-button">
-            <img src={SortIcon} alt='sort-icon' />
-          </span>
+          <Dropdown style={{display:'inline-block'}}>
+            <Dropdown.Toggle className='sort-button' variant='light' data-cy="todo-sort-button">
+              <img src={SortIcon} alt='sort-icon' />
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {
+                sortOptions.map((item) => {
+                  return(
+                    <Dropdown.Item
+                      className='sort-item'
+                      onClick={() => handleSort(item.value)}
+                      data-cy={item.value}
+                    >
+                      <span>
+                        <img src={require(`../../static/${item.value}.svg`)} alt={item.value} />
+                        {item.label}
+                      </span>
+                      { selectedSort === item.value && <HiCheck/> }
+                    </Dropdown.Item>
+                  )
+                })
+              }
+            </Dropdown.Menu>
+          </Dropdown>
           <Button data-cy="todo-add-button" onClick={handleShowModal}><HiPlus />Tambah</Button>
         </div>
       </div>
     )
   }
 
+  const handleSort = (selected) => {
+    setSelectedSort(selected);
+    const temp = [...todoItems]
+    if (selected === 'sort-latest') {
+      temp.sort((a,b) => b.id - a.id);
+    } else if (selected === 'sort-oldest') {
+      temp.sort((a,b) => a.id - b.id);
+    } else if (selected === 'sort-az') {
+      temp.sort((a,b) => a.title.localeCompare(b.title))
+    } else if (selected === 'sort-za') {
+      temp.sort((a,b) => b.title.localeCompare(a.title))
+    } else if (selected === 'sort-unfinished') {
+      temp.sort((a,b) => b.is_active - a.is_active);
+    }
+    setTodoItems(temp);
+  }
+
   const generateTodoList = () => {
     return(
       <div className='py-3'>
         {
-          activityDetails && activityDetails.todo_items.map((item) => {
+          todoItems.map((item) => {
             return(
               <List 
                 item={item}
@@ -239,7 +278,8 @@ export default function Details() {
     .then(res => {
       const { status } = res;
       if (status === 200) {
-        getActivityDetails()
+        // getActivityDetails()
+        // handleSort(selectedSort)
         }
     })
   }
@@ -262,6 +302,7 @@ export default function Details() {
         if (status === 200) {
           getActivityDetails()
           handleCloseDeleteModal()
+          handleShowAlertTemporary()
         }
       })
   }
@@ -288,13 +329,32 @@ export default function Details() {
     )
   }
 
+  const generateAlert = () => {
+    return (
+      <ModalComponent show={showAlert} onClose={()=> setShowAlert(false)} modalCy="modal-information">
+        <div className="info-alert">
+          <span><img src={InfoIcon} alt="info-icon" /></span>
+          <span>Item berhasil dihapus</span>
+        </div>
+      </ModalComponent>
+    )
+  }
+
+  const handleShowAlertTemporary = () => {
+    setShowAlert(true)
+    setTimeout(() => {
+      setShowAlert(false)
+    }, 3000);
+  }
+
   return (
     <ContentLayout>
       {generateTitleBar()}
-      { activityDetails && activityDetails.todo_items.length === 0 && emptyState()}
+      { todoItems.length === 0 && emptyState()}
       {generateTodoList()}
       {generateModal()}
       {generateDeleteConfirmation()}
+      {generateAlert()}
     </ContentLayout>
   )
 }

@@ -27,3 +27,26 @@ export const priorityOptions = [
       icon: <div className='option-icon purple'></div>
     },
   ];
+
+  export const sortOptions = [
+    {
+      label: "Terbaru",
+      value: "sort-latest"
+    },
+    {
+      label: "Terlama",
+      value: "sort-oldest"
+    },
+    {
+      label: "A-Z",
+      value: "sort-az"
+    },
+    {
+      label: "Z-A",
+      value: "sort-za"
+    },
+    {
+      label: "Belum Selesai",
+      value: "sort-unfinished"
+    },
+  ]

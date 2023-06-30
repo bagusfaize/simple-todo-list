@@ -99,14 +99,27 @@ body {
 }
 
 .sort-button {
+  display: inline-block;
   margin-right: 1.5rem;
   padding: 0.65rem;
   border-radius: 50px;
   border: 1px solid $color-light-grey-2;
+  background: transparent;
   &:hover {
     background: $color-white;
     cursor: pointer;
     transition: color 0.25s ease-in-out;
+  }
+}
+
+.sort-item {
+  display: flex;
+  justify-content: space-between;
+  img {
+    margin-right: 0.5rem;
+  }
+  svg {
+    margin-left: 1rem;
   }
 }
 
@@ -146,4 +159,8 @@ body {
   &.purple {
     background: $color-purple;
   }
+}
+
+.dropdown-toggle::after {
+  display: none !important; 
 }

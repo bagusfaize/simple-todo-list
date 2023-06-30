@@ -104,7 +104,7 @@ export default function Home() {
     setShowAlert(true)
     setTimeout(() => {
       setShowAlert(false)
-    }, 2500);
+    }, 3000);
   }
 
   const generateDeleteConfirmation = () => {
