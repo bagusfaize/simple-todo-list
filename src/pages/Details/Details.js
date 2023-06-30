@@ -178,16 +178,26 @@ export default function Details() {
           <Link to={'/'} data-cy="todo-back-button">
             <HiChevronLeft />
           </Link>
-            <Form.Control 
-              ref={titleRef}
-              data-cy="todo-title"
-              onBlur={handleOnBlur}
-              type="text" 
-              className={`editableTitle ${isEditTitle? 'isEdit': ''}`}
-              value={titleActivity}
-              onClick={handleEditTitle}
-              onChange={(e) => setTitleActivity(e.target.value)}
-              />
+          <Form.Control 
+            ref={titleRef}
+            data-cy="todo-title"
+            onBlur={handleOnBlur}
+            onMouseLeave={handleOnBlur}
+            type="text"
+            className={`editableTitle ${isEditTitle ? 'isEdit' : ''}`}
+            value={titleActivity}
+            onClick={handleEditTitle}
+            onChange={(e) => setTitleActivity(e.target.value)}
+          />
+          {
+            !isEditTitle &&
+              <div
+                data-cy="todo-title"
+                onClick={handleEditTitle}
+              >
+                {titleActivity}
+              </div>
+          }
           <div className='edit-title-button' onClick={handleEditTitle} data-cy="todo-title-edit-button">
             <img src={EditIcon} alt='edit-title-button'/>
           </div>
