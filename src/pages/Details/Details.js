@@ -126,24 +126,25 @@ export default function Details() {
           />
           <Form.Label className="mt-3" data-cy="modal-add-priority-title">PRIORITY</Form.Label>
           <div className="col-4">
-            <Select
-              id='modal-add-priority-dropdown'
-              data-cy="modal-add-priority-dropdown"
-              className="custom-select-option"
-              placeholder="Pilih priority"
-              value={selectedOption}
-              options={priorityOptions}
-              getOptionLabel={e => {
-                return(
-                <div data-cy={`modal-add-priority-${e.value}`}>
-                  <span>{e.icon}</span>
-                  <span>{e.label}</span>
-                </div>
-                )
-              }}
-              onChange={handleChangeOption}
-              isSearchable={false}
-            />
+            <div data-cy="modal-add-priority-dropdown" htmlFor="modal-add-priority-dropdown">
+              <Select
+                id='modal-add-priority-dropdown'
+                className="custom-select-option"
+                placeholder="Pilih priority"
+                value={selectedOption}
+                options={priorityOptions}
+                getOptionLabel={e => {
+                  return(
+                  <div data-cy={`modal-add-priority-${e.value}`}>
+                    <span>{e.icon}</span>
+                    <span>{e.label}</span>
+                  </div>
+                  )
+                }}
+                onChange={handleChangeOption}
+                isSearchable={false}
+              />
+            </div>
           </div>
         </div>
       </ModalComponent>
@@ -185,7 +186,12 @@ export default function Details() {
                   onChange={(e) => setTitleActivity(e.target.value)}
                   />
               :
-                <div data-cy="todo-title">{titleActivity}</div>
+                <div 
+                  data-cy="todo-title"
+                  onClick={handleEditTitle}
+                >
+                  {titleActivity}
+                </div>
             }
           <div className='edit-title-button' onClick={handleEditTitle} data-cy="todo-title-edit-button">
             <img src={EditIcon} alt='edit-title-button'/>
@@ -196,14 +202,14 @@ export default function Details() {
             <Dropdown.Toggle className='sort-button' variant='light' data-cy="todo-sort-button">
               <img src={SortIcon} alt='sort-icon' />
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu data-cy="sort-parent" >
               {
                 sortOptions.map((item) => {
                   return(
                     <Dropdown.Item
                       className='sort-item'
                       onClick={() => handleSort(item.value)}
-                      data-cy={item.value}
+                      data-cy="sort-selection"
                     >
                       <span>
                         <img src={require(`../../static/${item.value}.svg`)} alt={item.value} />
