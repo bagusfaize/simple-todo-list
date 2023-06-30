@@ -279,8 +279,8 @@ export default function Details() {
     .then(res => {
       const { status } = res;
       if (status === 200) {
-        // getActivityDetails()
-        // handleSort(selectedSort)
+        getActivityDetails()
+        handleSort(selectedSort)
         }
     })
   }
