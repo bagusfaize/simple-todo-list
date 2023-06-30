@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ContentLayout from '../../components/Content'
 import { Button, Dropdown, Form } from 'react-bootstrap';
 import { HiPlus, HiChevronLeft, HiCheck } from 'react-icons/hi';
@@ -16,6 +16,7 @@ import List from '../../components/List';
 import Select from 'react-select';
 
 export default function Details() {
+  const titleRef = useRef(null)
   const {id} = useParams()
   const [isEditTitle, setIsEditTitle] = useState(false)
   const [todoItems, setTodoItems] = useState([]);
@@ -152,7 +153,8 @@ export default function Details() {
   }
 
   const handleEditTitle = () => {
-    setIsEditTitle(!isEditTitle)
+    titleRef && titleRef.current.focus()
+    setIsEditTitle(true)
   }
 
   const handleOnBlur = () => {
@@ -176,23 +178,16 @@ export default function Details() {
           <Link to={'/'} data-cy="todo-back-button">
             <HiChevronLeft />
           </Link>
-            {
-              isEditTitle ?
-                <Form.Control 
-                  onBlur={handleOnBlur}
-                  type="text" 
-                  className={`editableTitle`}
-                  value={titleActivity}
-                  onChange={(e) => setTitleActivity(e.target.value)}
-                  />
-              :
-                <div 
-                  data-cy="todo-title"
-                  onClick={handleEditTitle}
-                >
-                  {titleActivity}
-                </div>
-            }
+            <Form.Control 
+              ref={titleRef}
+              data-cy="todo-title"
+              onBlur={handleOnBlur}
+              type="text" 
+              className={`editableTitle ${isEditTitle? 'isEdit': ''}`}
+              value={titleActivity}
+              onClick={handleEditTitle}
+              onChange={(e) => setTitleActivity(e.target.value)}
+              />
           <div className='edit-title-button' onClick={handleEditTitle} data-cy="todo-title-edit-button">
             <img src={EditIcon} alt='edit-title-button'/>
           </div>
