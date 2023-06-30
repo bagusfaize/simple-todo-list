@@ -33,6 +33,11 @@ export default function Details() {
   useEffect(() => {
     getActivityDetails()
   }, [])
+
+  useEffect(() => {
+      isEditTitle && titleRef && titleRef.current.focus()
+  }, [isEditTitle])
+  
   
   const getActivityDetails = () => {
     axios.get(`${BASE_URL}/activity-groups/${id}`, { params: { email: "bagus.faize@gmail.com" } })
