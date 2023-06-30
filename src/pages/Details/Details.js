@@ -135,7 +135,7 @@ export default function Details() {
                 options={priorityOptions}
                 getOptionLabel={e => {
                   return(
-                  <div data-cy={`modal-add-priority-${e.value}`}>
+                  <div data-cy={`modal-add-priority-item`}>
                     <span>{e.icon}</span>
                     <span>{e.label}</span>
                   </div>
