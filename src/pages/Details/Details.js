@@ -110,7 +110,7 @@ export default function Details() {
         header
         footer
         isEdit={isEditItem}
-        disableButton={!itemName && !selectedOption}
+        disableButton={!itemName || !selectedOption}
         onUpdate={handleUpdateItem}
         onSubmit={handleSubmitTodo}
         btnCy="modal-add-save-button"
