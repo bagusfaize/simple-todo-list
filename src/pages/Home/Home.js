@@ -62,7 +62,7 @@ export default function Home() {
             return (
               <Card
                 item={item}
-                key={item.title + i}
+                key={item.title}
                 onDeleteClick={(e) => handleDeleteActivity(e,item)}
               />
             )
@@ -73,7 +73,7 @@ export default function Home() {
   }
 
   const handleDeleteActivity = (e,item) => {
-    e.stopPropagation && e.stopPropagation()
+    e?.stopPropagation()
     setSelectedActivity(item)
     setShowDeleteModal(true)
   }
@@ -90,7 +90,7 @@ export default function Home() {
   const emptyState = () => {
     return (
       <div className="d-flex justify-content-center py-5">
-        <img src={EmptyState} data-cy="activity-empty-state" alt='empty-state' width={500} />
+        <img src={EmptyState} data-cy="activity-empty-state" alt='empty-state' className='empty-state' />
       </div>
     )
   }

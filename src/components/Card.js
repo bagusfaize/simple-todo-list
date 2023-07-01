@@ -13,7 +13,7 @@ export default function Card({ item, onDeleteClick }) {
   }
 
   return (
-    <div className="col-3">
+    <div className="col-6 col-md-4 col-lg-3">
       <div
         onClick={goToDetails}
         className="activity-card"

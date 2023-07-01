@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import ContentLayout from '../../components/Content'
 import { Button, Dropdown, Form } from 'react-bootstrap';
 import { HiPlus, HiChevronLeft, HiCheck } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import EmptyState from '../../static/todo-empty-state.svg';
 import EditIcon from '../../static/todo-title-edit-button.svg';
 import SortIcon from '../../static/tabler_arrows-sort.svg';
@@ -11,7 +11,6 @@ import InfoIcon from '../../static/modal-information-icon.svg';
 import ModalComponent from '../../components/Modal';
 import axios from 'axios';
 import { BASE_URL, priorityOptions, sortOptions } from '../../utils/Constant';
-import {useParams} from 'react-router-dom';
 import List from '../../components/List';
 import Select from 'react-select';
 
@@ -53,7 +52,7 @@ export default function Details() {
   const emptyState = () => {
     return (
       <div className="d-flex justify-content-center py-5">
-        <img data-cy="todo-empty-state" src={EmptyState} alt='empty-state' width={500} />
+        <img data-cy="todo-empty-state" src={EmptyState} alt='empty-state' className='empty-state' />
       </div>
     )
   }
@@ -106,6 +105,15 @@ export default function Details() {
     })
   }
 
+  const customOptions = (e) => {
+    return (
+      <div data-cy={`modal-add-priority-item`}>
+        <span>{e.icon}</span>
+        <span>{e.label}</span>
+      </div>
+    )
+}
+
   const generateModal = () => {
     return (
       <ModalComponent 
@@ -139,14 +147,7 @@ export default function Details() {
                 placeholder="Pilih priority"
                 value={selectedOption}
                 options={priorityOptions}
-                getOptionLabel={e => {
-                  return(
-                  <div data-cy={`modal-add-priority-item`}>
-                    <span>{e.icon}</span>
-                    <span>{e.label}</span>
-                  </div>
-                  )
-                }}
+                getOptionLabel={e => customOptions(e)}
                 onChange={handleChangeOption}
                 isSearchable={false}
               />
@@ -215,6 +216,7 @@ export default function Details() {
                 sortOptions.map((item) => {
                   return(
                     <Dropdown.Item
+                      key={item.value}
                       className='sort-item'
                       onClick={() => handleSort(item.value)}
                       data-cy="sort-selection"

@@ -168,3 +168,16 @@ body {
 .dropdown-toggle::after {
   display: none !important; 
 }
+
+img.empty-state {
+  width: 450px;
+}
+
+@media only screen and (max-width: 600px) {
+.sort-button {
+  margin-right: 0.25rem;
+}
+img.empty-state {
+  width: 300px;
+}
+}
